@@ -1,0 +1,10 @@
+{
+  "dev": {
+    "driver": "mysql",
+    "host": "mysql",
+    "user": "admin",
+    "password": "password",
+    "database": "pet_node",
+    "multipleStatements": true
+  }
+}

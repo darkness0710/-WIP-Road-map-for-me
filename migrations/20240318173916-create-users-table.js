@@ -22,10 +22,15 @@ module.exports = {
         type: "string",
         allowNull: false,
       },
-      created_at: {
-        type: "date",
+      updated_at: {
+        type: "timestamp",
         allowNull: false,
-        defaultValue: new String("now()"),
+        defaultValue: new String('now()'),
+      },
+      created_at: {
+        type: "timestamp",
+        allowNull: false,
+        defaultValue: new String('now()'),
       },
     });
   },

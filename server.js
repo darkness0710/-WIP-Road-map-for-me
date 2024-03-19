@@ -4,7 +4,7 @@ const Logger = require("./middleware/log");
 const dotenv = require("dotenv");
 dotenv.config = { path: "./config/config.env" };
 const app = express();
-PORT = process.env.PORT || 5000;
+PORT = process.env.PORT || 3000;
 
 const logger = new Logger();
 app.use(logger.middleware());

@@ -1,0 +1,3 @@
+/node_modules
+/logs/log.txt
+/docker_setup/mysql_data

@@ -9,3 +9,6 @@
 
 ### Command line migrate DB
 #### db-migrate up --config config/database.json 
+
+### MySQL8: Client does not support authentication protocol requested by server             
+#### ALTER USER 'admin' IDENTIFIED WITH 'mysql_native_password' BY 'password';

@@ -1,26 +1,49 @@
 const db = require('../db/dbConnector');
+const UserModel = require('../model/user.model');
+const { param } = require('../routes/user');
+const userModel = new UserModel();
 
 module.exports = {
-  getUsers: (req, res, next) => {
-    db.query('SELECT * FROM users', (error, data, fields) => {
-      console.log(error);
-      if (error) {
-        res.status(500).send('Error fetching users from database');
-        return;
-      }
-      res.status(200).json({ success: true, msg: "List users", data: data });
+  getUsers: async (req, res, next) => {
+    res.status(200).json({ 
+      success: true,
+      msg: "List users",
+      data: await userModel.getAllUsers() 
     });
   },
-  getUser: (req, res, next) => {
-    res.status(200).json({ success: true, msg: `Show user ${req.params.id}`, data: {} })
+  getUser: async (req, res, next) => {
+    const userId = req.params.id;
+    res.status(200).json({
+      success: true,
+      msg: `Show user_id ${userId}`,
+      data: await userModel.getUserById(userId) 
+    })
   },
-  createUser: (req, res, next) => {
-    res.status(200).json({ success: true, msg: `Create user ${req.params.id}`, data: {} })
+  createUser: async (req, res, next) => {
+    const { username, email, password } = req.body;
+    const user  = await userModel.createUser({ username, email, password });
+    res.status(200).json({
+      success: true,
+      msg: "Create user",
+      data: user 
+    });
   },
-  updateUser: (req, res, next) => {
-    res.status(200).json({ success: true, msg: `Update user ${req.params.id}`, data: {} })
+  updateUser: async (req, res, next) => {
+    const userId = req.params.id;
+    const { username, email, password } = req.body;
+    await userModel.updateUser(userId, { username, email, password });
+    res.status(200).json({
+      success: true,
+      msg: `Update user ${req.params.id}`,
+      data: await userModel.getUserById(userId) 
+    })
   },
-  deleteUser: (req, res, next) => {
-    res.status(200).json({ success: true, msg: `Delete user ${req.params.id}`, data: {} })
+  deleteUser: async (req, res, next) => {
+    const userId = req.params.id;
+    res.status(200).json({
+      success: true,
+      msg: `Delete user ${req.params.id}`,
+      data: userModel.deleteUser(userId)
+    })
   },
 };

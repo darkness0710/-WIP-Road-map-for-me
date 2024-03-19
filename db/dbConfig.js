@@ -1,7 +1,7 @@
 module.exports = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'nodejs',
-    port: 3306
+    host: 'mysql',
+    user: 'admin',
+    password: 'password',
+    database: 'pet_node',
+    port: 3306,
 };
